@@ -1,0 +1,170 @@
+﻿@model IEnumerable<EmployeeForm.Core.Model.EmployeeModel>
+@{
+    Layout = null;
+}
+<head>
+    <script src="https://kit.fontawesome.com/a10c7f6efa.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, rgba(30,123,123,1), rgba(25,194,126,1));
+            width: 90%;
+            height: 65%;
+        }
+
+        #title {
+            background-color: darkslateblue;
+            color: white;
+            padding-top: 20px;
+            width: 30%;
+            padding-right: 50px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+
+        td {
+            font-size: medium;
+            background-color: white;
+        }
+
+        #add {
+            padding-left: 87%;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        #detail {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 80px;
+            margin-left: 500px;
+        }
+
+
+        .table {
+            margin-bottom: 100px;
+            width: 100%;
+            height: 40%;
+            margin-left: 70px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        button {
+            margin-left: 90%;
+            height: 50px;
+            width: 150px;
+            background: linear-gradient(to right, #33d0ff,#eaee44);
+            font-size: medium;
+        }
+
+        #delete {
+            color: red;
+        }
+    </style>
+
+    <title>List of Employee</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row p-5">
+            <div class="col-10" id="detail">EMPLOLYEE DETAILS</div>
+            <button onclick="location.href='@Url.Action("Create","Employee")'">Add Employee</button>
+        </div>
+    </div>
+    <table class="table align-center">
+        <thead>
+            <tr id="title">
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.qualification)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.JobRole)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.experience)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Re_Password)
+                </th>
+                <th>
+                    Action
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var i in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(model => i.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.qualification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.JobRole)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.experience)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PhoneNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Re_Password)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ","Edit", new { id=i.ID},new{@class="fa-solid fa-pen-to-square"})
+                        @Html.ActionLink("", "DeleteForm", new {id = i.ID },new{@class="fas fa-trash-alt text-danger",@id="delete",title="Delete", onclick="deletedetail()"})
+
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+
+</body>
+<script>
+    function deletedetail() {
+        alert("Are you sure you want to delete?");
+    }
+</script>

@@ -51,16 +51,23 @@
             margin-bottom: 50px;
         }
 
-        button {
+       .ad {
             margin-left: 90%;
             height: 50px;
             width: 150px;
             background: linear-gradient(to right, #33d0ff,#eaee44);
             font-size: medium;
+            border-radius: 5px;
+            color:black;
         }
 
         #delete {
             color: red;
+        }
+        button{
+            border:none;
+            background:white;
+            color:red;
         }
     </style>
 
@@ -70,7 +77,7 @@
     <div class="container">
         <div class="row p-5">
             <div class="col-10" id="detail">EMPLOLYEE DETAILS</div>
-            <button onclick="location.href='@Url.Action("Create","Employee")'">Add Employee</button>
+            <button class="ad" onclick="location.href='@Url.Action("Create","Employee")'">Add Employee</button>
         </div>
     </div>
     <table class="table align-center">
@@ -154,18 +161,27 @@
                         @Html.DisplayFor(model => i.Re_Password)
                     </td>
                     <td>
-                        @Html.ActionLink(" ","Edit", new { id=i.ID},new{@class="fa-solid fa-pen-to-square"})
-                        @Html.ActionLink("", "DeleteForm", new {id = i.ID },new{@class="fas fa-trash-alt text-danger",@id="delete",title="Delete", onclick="deletedetail()"})
-
+                        @Html.ActionLink(" ","Edit", new { id=i.ID},new{@class="fa-solid fa-pen-to-square",title="Edit"})
+                        <button onclick="return confirm('Are you sure want to delete this record?')">
+                            @Html.ActionLink(" ", "Delete", new {id = i.ID},new{@class="fas fa-trash-alt text-danger" })
+                    
+                        </button>
+                        
                     </td>
                 </tr>
             }
         </thead>
     </table>
-
 </body>
 <script>
-    function deletedetail() {
-        alert("Are you sure you want to delete?");
-    }
+    //function delete() {
+    //   if(confirm("Are you sure you want to delete?"))
+    //   {
+    //       location.href=@Url.Action("Delete","Employee");
+    //   }
+    //   else
+    //   {
+    //        location.href = @Url.Action("list","Employee");
+    //   }
+    //}
 </script>

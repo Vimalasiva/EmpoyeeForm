@@ -24,12 +24,7 @@ namespace EmployeeForm.Services
         }
         #endregion
 
-        #region Editform
-        public void  Editform(EmployeeModel employeeModel)
-        {
-            _employeeRepository.Editform(employeeModel);
-        }
-        #endregion
+      
 
         #region Listform
 

@@ -34,6 +34,7 @@
         #job {
             color: black;
         }
+        
     </style>
 </head>
 @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @id = "start" }))
@@ -48,6 +49,7 @@
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                             <form>
+                                @Html.HiddenFor(m=>m.ID)
                                 <div class="col-md-6">
                                     <label for="inputEmail4" class="form-label">Name<span style="color:red">*</span></label>
                                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control",@placeholder="Enter your Name",@id="name",@name="name"})
@@ -59,24 +61,17 @@
                                 <div class="col-md-6 mt-1 ">
                                     <label for="inputEmail4" class="form-label">Gender<span style="color:red">*</span></label>
 
-                                    <div class="form-check mt-2">
-                                        <label> @Html.RadioButtonFor(m => m.gender,"Male",new{@id="gender"})Male</label>
-
-                                    </div>
-                                    <div class="form-check">
-                                        <label> @Html.RadioButtonFor(m => m.gender,"Female",new{@id="gender"})Female</label>
-
-                                    </div>
-                                    <div class="form-check">
-                                        <label> @Html.RadioButtonFor(m => m.gender,"Other",new{@id="gender"})Other</label>
-
+                                    <div class="form-check mt-2" id="radio"> 
+                                        <label> @Html.RadioButtonFor(m => m.gender,"Male")Male</label>  
+                                        <label> @Html.RadioButtonFor(m => m.gender,"Female")Female</label>
+                                        <label> @Html.RadioButtonFor(m => m.gender,"Other")Other</label>
                                     </div>
 
                                 </div>
 
                                 <div class="col-md-12 mt-1">
                                     <label for="inputPassword4" class="form-label">Qualification<span style="color:red">*</span></label>
-                                    <div class="course">
+                                    <div class="course" style="color:black;">
                                         @Html.DropDownListFor(m=>m.qualification, new List<SelectListItem>
                                     {
                                     new SelectListItem{ Text="BE"},
@@ -174,7 +169,7 @@
                 PhoneNo: {
                     required: true,
                     number: true,
-                    maxlength: 10,
+                    minlength: 10,
                 },
                 address: {
                     required: true,
@@ -184,11 +179,8 @@
                     email: true,
                 },
                 password: {
-
                     minlength: 5,
                     required: true,
-
-
                 },
                 Re_Password: {
                     required: true,
@@ -197,13 +189,10 @@
                 },
                 gender: {
                     required: true,
-
                 },
-
             },
             // in 'messages' user have to specify message as per rules
             messages: {
-
                 Name: {
                     required: " Please enter a Name",
                 },
@@ -223,7 +212,7 @@
 
                 PhoneNo: {
                     required: "Enter your mobile number",
-                    maxlenght: "Mobile number must contain only 10 characters"
+                    minlenght: "Mobile number must contain 10 characters"
                 },
                 address: {
                     required: "Enter your location",
@@ -245,6 +234,15 @@
                 },
 
             },
+            errorPlacement: function (error, element) {
+              
+                if(element.is(":radio")) {
+                    error.insertAfter(element.parents('#radio'));
+                }
+                else { // This is the default behavior
+                    error.insertAfter(element);
+                }
+            }
         });
     });
     function mypassword() {
@@ -262,7 +260,8 @@
         } else {
             x.type = "password";
         }
-    }
+    } 
+   
 </script>
 
 

@@ -11,7 +11,7 @@ namespace EmployeeForm.Core.IRepository
     public  interface IEmployeeRepository
     {
         public void Createform(EmployeeModel employeeModel);
-        public void Editform( EmployeeModel employeeModel);
+
         List<EmployeeModel> listform();
         public void deleteid(int id);
         public EmployeeModel Save(int id);

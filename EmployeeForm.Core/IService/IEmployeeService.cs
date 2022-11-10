@@ -12,8 +12,6 @@ namespace EmployeeForm.Core.IService
     {
         public void Createform(EmployeeModel employeeModel);
         public void deleteid(int id);
-        public void Editform(EmployeeModel employeeModel);
-      
         List<EmployeeModel> listform();
        public  EmployeeModel Save(int id);
     }

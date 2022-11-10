@@ -54,14 +54,14 @@ namespace EmpoyeeForm.Controllers
         public IActionResult Edit(int id)
         {
             var edit = employeeService.Save(id);
-            return View(edit);
+            return View("Create",edit);
         }
-        [HttpPost]
-        public IActionResult Edit( EmployeeModel employeeModel)
-        {
-            employeeService.Editform(employeeModel);
-            return RedirectToAction("list");
-        }
+        //[HttpPost]
+        //public IActionResult Edit( EmployeeModel employeeModel)
+        //{
+        //    employeeService.Editform(employeeModel);
+        //    return RedirectToAction("Create");
+        //}
         #endregion
 
 
